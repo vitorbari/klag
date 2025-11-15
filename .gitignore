@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+.venv/
+env.bak/
+venv.bak/
+ENV/
+__pypackages__/
+.python-version
+.env
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.history/
+.spyderproject
+.spyproject
+.ropeproject
+.project
+.pydevproject
+.settings/
+
+# Local configuration
+/klag.yaml
+~/.config/klag/
+*.log
+logs/
+
+# Documentation and notebook files
+docs/_build/
+site/
+_site/
+.ipynb_checkpoints/
+
+# Distribution / packaging
+*.tar.gz
+*.whl
+MANIFEST
+
+# Test coverage and linting
+.coverage
+htmlcov/
+coverage.xml
+.pytest_cache/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/

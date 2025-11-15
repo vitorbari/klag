@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+include CONTRIBUTING.md
+include klag.yaml.example
+include .coveragerc
+recursive-include tests *.py

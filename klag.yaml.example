@@ -1,0 +1,25 @@
+# klag configuration example
+environments:
+  local:
+    # bootstrap_server is optional if already defined in client.properties
+    # If provided, it will override the value in client.properties
+    bootstrap_server: "localhost:9092"
+    config_file: "~/.config/kafka/local/client.properties"
+
+  staging:
+    # You can omit bootstrap_server if it's already in the client.properties file
+    # Example with only config_file:
+    config_file: "~/.config/kafka/staging/client.properties"
+
+  production:
+    # Example with both (bootstrap_server takes precedence)
+    bootstrap_server: "kafka-production-server:9092"
+    config_file: "~/.config/kafka/production/client.properties"
+
+# Default consumer group to monitor
+default_group: "consumer-group-1"
+
+# Default visualization settings
+defaults:
+  mode: "bar"  # text or bar
+  watch_interval: 5  # seconds for watch mode
