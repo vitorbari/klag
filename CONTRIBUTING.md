@@ -38,8 +38,11 @@ Please note that this project adheres to the Contributor Covenant Code of Conduc
 git clone https://github.com/YOUR_USERNAME/klag.git
 cd klag
 
+# Install dependencies
+pip3 install pyyaml
+
 # Install dev dependencies
-pip install -e ".[dev]"
+pip3 install pytest pytest-cov
 
 # Run tests
 pytest
@@ -70,9 +73,8 @@ pytest
 
 Only project maintainers can create releases. The process includes:
 
-1. Update version in `klag/__init__.py` and `setup.py`
+1. Update version in `klag/__init__.py`
 2. Update CHANGELOG.md
 3. Create a new GitHub release with release notes
-4. Update Homebrew formula if needed
 
 Thank you for contributing to klag!
