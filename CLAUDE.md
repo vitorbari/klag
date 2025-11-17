@@ -6,15 +6,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 klag (Kafka Lag) is a command-line utility for visualizing Kafka consumer group lag with more intuitive and cleaner output than the standard Kafka tools. It wraps around the `kafka-consumer-groups` command and provides multiple visualization modes.
 
-## Distribution
-
-klag is distributed via Homebrew. The Homebrew formula handles installation of all dependencies (Python, PyYAML, Kafka) and places configuration files in the appropriate locations.
+## Installation
 
 ### Installation for Users
 
 ```bash
-# Install via Homebrew
-brew install klag
+# Clone the repository
+git clone https://github.com/vitorbari/klag.git
+cd klag
+
+# Install dependencies
+pip3 install pyyaml
+
+# Make executable
+chmod +x klag.py
+
+# Optionally create symbolic link
+ln -s $(pwd)/klag.py /usr/local/bin/klag
 ```
 
 ### Development Setup
@@ -104,8 +112,6 @@ The configuration file can be placed in one of these locations:
 - `./klag.yaml` (current directory)
 - `~/.config/klag/klag.yaml` (user config directory)
 - `/etc/klag/klag.yaml` (system config directory)
-- `/usr/local/etc/klag/klag.yaml` (Homebrew on Intel Macs)
-- `/opt/homebrew/etc/klag/klag.yaml` (Homebrew on Apple Silicon)
 
 Example configuration:
 ```yaml
@@ -130,24 +136,11 @@ defaults:
 
 ## Dependencies
 
-- Python 3.6+ (automatically installed by Homebrew)
-- PyYAML (automatically installed by Homebrew)
-- Kafka tools (`kafka-consumer-groups` must be in your PATH, installed by Homebrew)
+- Python 3.6+
+- PyYAML (install via `pip3 install pyyaml`)
+- Kafka tools (`kafka-consumer-groups` must be in your PATH)
 
-## Homebrew Formula
+## Notes
 
-The Homebrew formula for klag handles installation of all dependencies and configuration. Key elements of the formula:
-
-1. **Dependencies**:
-   - `depends_on "python@3"`
-   - `depends_on "kafka"`
-   - PyYAML installed via resources
-
-2. **Installation**:
-   - Installs the executable script
-   - Installs example config to Homebrew's etc directory
-   - Respects existing configurations during upgrades
-
-3. **Development**:
-   - Local config files should be gitignored
-   - Use `klag.yaml.example` as a template for local development
+- Local config files should be gitignored
+- Use `klag.yaml.example` as a template for local development

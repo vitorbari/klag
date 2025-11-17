@@ -20,19 +20,33 @@ A simple command-line tool that wraps around the `kafka-consumer-groups` command
 
 ## Installation
 
-### Via Homebrew (Recommended)
-
+1. Clone the repository:
 ```bash
-brew install klag
+git clone https://github.com/vitorbari/klag.git
+cd klag
 ```
 
-### Manual Installation
+2. Ensure you have Python 3.6+ installed
 
-1. Ensure you have Python 3.6+ installed
-2. Clone this repository
-3. Install dependencies: `pip install pyyaml`
-4. Make the script executable: `chmod +x klag.py`
-5. (Optional) Create a symbolic link in your path: `ln -s $(pwd)/klag.py /usr/local/bin/klag`
+3. Install dependencies:
+```bash
+pip3 install pyyaml
+```
+
+4. Install Kafka tools (if not already installed):
+   - macOS: `brew install kafka`
+   - Linux: Follow [Apache Kafka installation guide](https://kafka.apache.org/downloads)
+   - Ensure `kafka-consumer-groups` is in your PATH
+
+5. Make the script executable:
+```bash
+chmod +x klag.py
+```
+
+6. (Optional) Create a symbolic link in your path for easy access:
+```bash
+ln -s $(pwd)/klag.py /usr/local/bin/klag
+```
 
 ## Configuration
 
@@ -40,8 +54,6 @@ Create a configuration file at one of these locations:
 - `./klag.yaml` (current directory)
 - `~/.config/klag/klag.yaml` (user config directory)
 - `/etc/klag/klag.yaml` (system config directory)
-- `/usr/local/etc/klag/klag.yaml` (Homebrew on Intel Macs)
-- `/opt/homebrew/etc/klag/klag.yaml` (Homebrew on Apple Silicon)
 
 Example configuration:
 
@@ -223,7 +235,7 @@ The project includes a test suite built with pytest. To run the tests:
 
 1. Install the test dependencies:
 ```bash
-pip install -e ".[dev]"
+pip3 install pytest pytest-cov
 ```
 
 2. Run the tests:
