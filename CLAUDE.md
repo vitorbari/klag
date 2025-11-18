@@ -10,13 +10,55 @@ klag (Kafka Lag) is a command-line utility for visualizing Kafka consumer group 
 
 ### Installation for Users
 
+#### Option A: Using a Virtual Environment (Recommended)
+
 ```bash
 # Clone the repository
 git clone https://github.com/vitorbari/klag.git
 cd klag
 
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate  # On Linux/macOS
+# or
+venv\Scripts\activate     # On Windows
+
 # Install dependencies
-pip3 install pyyaml
+pip install pyyaml
+
+# Make executable
+chmod +x klag.py
+
+# Optionally create a wrapper script
+echo '#!/bin/bash
+source "'$(pwd)'/venv/bin/activate"
+"'$(pwd)'/klag.py" "$@"' > /usr/local/bin/klag
+chmod +x /usr/local/bin/klag
+```
+
+#### Option B: Using pipx (for Command Line Applications)
+
+```bash
+# Install pipx if not already installed
+brew install pipx  # On macOS
+# or
+python3 -m pip install --user pipx  # On other systems
+
+# Install klag with its dependencies
+pipx install --spec git+https://github.com/vitorbari/klag.git pyyaml
+```
+
+#### Option C: System-wide Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/vitorbari/klag.git
+cd klag
+
+# Install dependencies in user space
+pip3 install --user pyyaml
 
 # Make executable
 chmod +x klag.py
@@ -25,6 +67,8 @@ chmod +x klag.py
 ln -s $(pwd)/klag.py /usr/local/bin/klag
 ```
 
+> **Note about PEP 668**: Modern Python installations implement PEP 668, which prevents pip from modifying system packages. If you encounter an "externally-managed-environment" error, use one of the virtual environment options above.
+
 ### Development Setup
 
 ```bash
@@ -32,8 +76,19 @@ ln -s $(pwd)/klag.py /usr/local/bin/klag
 git clone https://github.com/yourusername/klag.git
 cd klag
 
-# Install dependencies manually if needed
-pip3 install pyyaml
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate  # On Linux/macOS
+# or
+venv\Scripts\activate     # On Windows
+
+# Install dependencies
+pip install pyyaml
+
+# Install development dependencies
+pip install pytest pytest-cov
 
 # Create local config for development
 cp klag.yaml.example klag.yaml

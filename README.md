@@ -29,9 +29,42 @@ cd klag
 2. Ensure you have Python 3.6+ installed
 
 3. Install dependencies:
-```bash
-pip3 install pyyaml
-```
+
+   **Option A: Using a Virtual Environment (Recommended)**
+   ```bash
+   # Create a virtual environment
+   python3 -m venv venv
+
+   # Activate the virtual environment
+   source venv/bin/activate  # On Linux/macOS
+   # or
+   venv\Scripts\activate     # On Windows
+
+   # Install dependencies
+   pip install pyyaml
+   ```
+
+   **Option B: Using pipx (for command-line applications)**
+   ```bash
+   # Install pipx if not already installed
+   brew install pipx  # On macOS
+   # or
+   python3 -m pip install --user pipx  # On other systems
+
+   # Install klag with its dependencies
+   pipx install --spec git+https://github.com/vitorbari/klag.git pyyaml
+   ```
+
+   **Option C: System-wide Installation (may require additional flags)**
+   ```bash
+   # On modern Python installations (PEP 668 compliant)
+   pip3 install --user pyyaml  # Install in user space
+
+   # If you encounter "externally-managed-environment" errors and understand the risks:
+   pip3 install --user pyyaml  # Recommended user space installation
+   # OR (not recommended for system Python)
+   pip3 install --break-system-packages pyyaml  # Override protection, use with caution
+   ```
 
 4. Install Kafka tools (if not already installed):
    - macOS: `brew install kafka`
@@ -44,9 +77,20 @@ chmod +x klag.py
 ```
 
 6. (Optional) Create a symbolic link in your path for easy access:
-```bash
-ln -s $(pwd)/klag.py /usr/local/bin/klag
-```
+
+   If using a virtual environment, you may want to create a wrapper script instead:
+   ```bash
+   # Create a symlink if installed system-wide or with --user
+   ln -s $(pwd)/klag.py /usr/local/bin/klag
+
+   # If using a virtual environment, create a wrapper script:
+   echo '#!/bin/bash
+   source "'$(pwd)'/venv/bin/activate"
+   "'$(pwd)'/klag.py" "$@"' > /usr/local/bin/klag
+   chmod +x /usr/local/bin/klag
+   ```
+
+> **Note about PEP 668**: Modern Python installations implement PEP 668, which prevents pip from modifying system Python packages to avoid conflicts with the system package manager. This is why you might see "externally-managed-environment" errors. Using virtual environments is the recommended approach to avoid these issues.
 
 ## Configuration
 
